@@ -10,28 +10,28 @@
         <meta name="author" content="培风">
       
       
-        <link rel="canonical" href="https://isnthzy.github.io/Verilog%E9%9A%8F%E7%AC%94/">
+        <link rel="canonical" href="https://isnthzy.github.io/src/%E9%BE%99%E8%8A%AF%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../git%E7%9A%84%E7%94%A8%E6%B3%95/">
       
       
-        <link rel="next" href="../%E9%BE%99%E8%8A%AF%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/">
+        <link rel="next" href="../Verilog%E9%9A%8F%E7%AC%94/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
     
     
       
-        <title>Verilog随笔 - 培风的博客</title>
+        <title>龙芯杯个人赛编译教程 - 培风的博客</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.0e669242.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.85d0ee34.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#verilog" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -91,7 +91,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="培风的博客" class="md-header__button md-logo" aria-label="培风的博客" data-md-component="logo">
+    <a href="../.." title="培风的博客" class="md-header__button md-logo" aria-label="培风的博客" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Verilog随笔
+              龙芯杯个人赛编译教程
             
           </span>
         </div>
@@ -197,7 +197,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="培风的博客" class="md-nav__button md-logo" aria-label="培风的博客" data-md-component="logo">
+    <a href="../.." title="培风的博客" class="md-nav__button md-logo" aria-label="培风的博客" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -226,15 +226,96 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Hello World
+    主页
   </span>
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    linux笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            linux笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TMUX%E4%B8%8EVIM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMUX与VIM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git%E7%9A%84%E7%94%A8%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -254,15 +335,80 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    龙芯杯个人赛编译教程
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Verilog随笔
+    龙芯杯个人赛编译教程
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.创建本地仓库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3ssh" class="md-nav__link">
+    3.配置ssh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.克隆项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5.修改并编译
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -274,11 +420,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E9%BE%99%E8%8A%AF%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/" class="md-nav__link">
+      <a href="../Verilog%E9%9A%8F%E7%AC%94/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    龙芯杯个人赛在线编译教程
+    Verilog笔记
   </span>
   
 
@@ -307,6 +453,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.创建本地仓库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3ssh" class="md-nav__link">
+    3.配置ssh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4.克隆项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5.修改并编译
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -323,14 +512,55 @@
   
 
 
-<h1 id="verilog">Verilog随笔<a class="headerlink" href="#verilog" title="Permanent link">&para;</a></h1>
-<p>if和case语句必须在always里执行</p>
-<p>wire类型，不能直接=，要用assign，reg类型的才能=</p>
-<p>always语句里是不能出现wire类型的，用reg res变量去赋值</p>
-<p>R1=(C&gt;D)?1'b1:1'b0  三目运算符用法</p>
-<p>pipX_valid为1，这一级有指令在运行</p>
-<p>pipX_ready_go 当前这一级指令执行完毕</p>
-<p>pipX_allowin 当前级准许进入</p>
+<h1 id="_1">龙芯杯个人赛在线编译教程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1.安装<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>首先下载git 安装时一直点击确定即可</p>
+<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<h2 id="2">2.创建本地仓库<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>在桌面创建一个文件夹</p>
+<p>进入文件夹内，右键选择 open git bash here</p>
+<p><img alt="在这里插入图片描述" src="../typora-user-images/20200503101637160.png" /></p>
+<p>输入指令 git init</p>
+<p><img alt="image-20230728204839456" src="../typora-user-images/image-20230728204839456.png" /></p>
+<h2 id="3ssh">3.配置ssh<a class="headerlink" href="#3ssh" title="Permanent link">&para;</a></h2>
+<p>打开龙芯杯在线实验平台官网</p>
+<p>在官网网址端口号+1访问</p>
+<p><img alt="image-20230728205341403" src="../typora-user-images/image-20230728205341403.png" /></p>
+<p>点击右上角 edit profile</p>
+<p><img alt="image-20230728205601756" src="../typora-user-images/image-20230728205601756.png" /></p>
+<p>打开ssh该页面后，回到git窗口</p>
+<p>输入指令:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">rsa</span><span class="w"> </span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="err">”</span><span class="n">yourEmail</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="err">”</span>
+</code></pre></div>
+<p>记得换成自己的邮箱</p>
+<p>然后打开本地用户文件夹，找到.ssh目录下的id_rsa.pub，用记事本打开，将里面的内容粘贴至刚刚打开的网页</p>
+<p><img alt="image-20230728210211917" src="../typora-user-images/image-20230728210211917.png" /></p>
+<p><img alt="image-20230728210546577" src="../typora-user-images/image-20230728210546577.png" /></p>
+<h2 id="4">4.克隆项目<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>找到你的项目文件，选中并复制</p>
+<p><img alt="image-20230728210806142" src="../typora-user-images/image-20230728210806142.png" /></p>
+<p>回到你的git窗口</p>
+<p>输入: * 为你自己的要输入的地址</p>
+<div class="highlight"><pre><span></span><code>git clone ssh://*************
+</code></pre></div>
+<p><img alt="image-20230728212906514" src="../typora-user-images/image-20230728212906514.png" /></p>
+<p>然后你会发现 该文件夹里会多出一个文件夹，这就是官方的项目</p>
+<p><img alt="image-20230728213050388" src="../typora-user-images/image-20230728213050388.png" /></p>
+<p>接下来怎么做？</p>
+<h2 id="5">5.修改并编译<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>像平常一样把自己的verilog源码粘贴到\thinpad_top.srcs\sources_1\new文件夹</p>
+<p>随后打开 thinpad_top.xpr 检查一下里面的代码是否正确，串口文件是否正确，cpu的时钟是否正确等等</p>
+<p>等待检查完毕后，先不要着急生成比特流，让gitlab帮你生成</p>
+<p>在该目录下右键打开open git bash here</p>
+<p>输入三个指令</p>
+<div class="highlight"><pre><span></span><code>git add . //添加所有文件
+
+git commit -m &quot;v1.0&quot; //引号这里是本次提交的注释
+
+git push
+</code></pre></div>
+<p>这时回到在线平台官网，点击显示在线编译列表，你会发现你提交的代码已经在编译中了，编译完后直接双击即可</p>
+<p><img alt="image-20230728213811849" src="../typora-user-images/image-20230728213811849.png" /></p>
 
 
 
@@ -372,10 +602,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.78eede0e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
