@@ -1,0 +1,999 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="培风">
+      
+      
+        <link rel="canonical" href="https://isnthzy.github.io/src/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF%E7%9A%84makefile%E7%B2%BE%E8%A7%A3/">
+      
+      
+        <link rel="prev" href="../Linux%E4%BD%BF%E7%94%A8man%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/">
+      
+      
+        <link rel="next" href="../Makefile%E5%AD%A6%E4%B9%A0/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+    
+    
+      
+        <title>一生一芯的makefile精解 - 培风的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ysyx-makefile" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="培风的博客" class="md-header__button md-logo" aria-label="培风的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            培风的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              一生一芯的makefile精解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/isnthzy/isnthzy.github.io/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    isnthzy/isnthzy.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="培风的博客" class="md-nav__button md-logo" aria-label="培风的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    培风的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/isnthzy/isnthzy.github.io/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    isnthzy/isnthzy.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7%E8%AF%BB%E5%90%8E%E6%84%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    提问的智慧读后感
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    linux笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            linux笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TMUX%E4%B8%8EVIM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMUX与VIM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git%E7%9A%84%E7%94%A8%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux%E4%BD%BF%E7%94%A8man%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux使用man中文手册
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    一生一芯的makefile精解
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    一生一芯的makefile精解
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1runcpu-test" class="md-nav__link">
+    1.小run从cpu-test的回家路线
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amklibelf" class="md-nav__link">
+    am、klib和、elf的冒险之旅
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Makefile%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Makefile学习随笔
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%BE%99%E8%8A%AF%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    龙芯杯个人赛编译教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Verilog%E9%9A%8F%E7%AC%94/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Verilog笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NJU%20PA1-%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NJU PA1-如何阅读手册
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ELF%E6%96%87%E4%BB%B6%E6%80%8E%E4%B9%88%E8%AF%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ELF文件怎么读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PA2.1%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E5%9C%A8NEMU%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NJU PA2.1一条指令在NEMU中的执行过程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC%E6%B7%B1%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    表达式求值深解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1runcpu-test" class="md-nav__link">
+    1.小run从cpu-test的回家路线
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amklibelf" class="md-nav__link">
+    am、klib和、elf的冒险之旅
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<div class="highlight"><pre><span></span><code><span class="err">-C</span><span class="w">        </span><span class="err">dir读入指定目录下的makefile</span><span class="w"> </span>
+<span class="err">-f</span><span class="w">        </span><span class="err">file读入当前目录下的file文件作为makefile</span><span class="w"> </span>
+<span class="err">-i</span><span class="w">        </span><span class="err">忽略所有命令执行错误</span><span class="w"> </span>
+<span class="err">-I</span><span class="w">        </span><span class="err">dir制定被包含的makefile所在目录</span><span class="w"> </span>
+<span class="err">-n</span><span class="w">        </span><span class="err">只打印要执行的命令，但是不执行这些命令</span><span class="w"> </span>
+<span class="err">-p</span><span class="w">        </span><span class="err">显示make变量数据库的隐含规则</span><span class="w"> </span>
+<span class="err">-s</span><span class="w">        </span><span class="err">在执行命令时不显示命令</span><span class="w"> </span>
+<span class="err">-w</span><span class="w">        </span><span class="err">如果执行make在执行过程中改变目录，打印当前目录名</span>
+
+<span class="err">addprefix：</span>
+<span class="k">$(</span><span class="nv">addprefix</span> &lt;<span class="nv">prefix</span>&gt;, &lt;<span class="nv">name1</span> <span class="nv">name2</span> <span class="nv">...</span>&gt;<span class="k">)</span>
+<span class="err">功能：把&lt;prefix&gt;加到name序列中的每一个元素前面。</span>
+
+<span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>addprefix<span class="w"> </span>%.,<span class="w"> </span>c<span class="w"> </span>cpp<span class="k">)</span>
+<span class="nf">test</span><span class="o">:</span>
+<span class="w">    </span>@echo<span class="w"> </span><span class="k">$(</span>result<span class="k">)</span>
+<span class="err">输出：%.c</span><span class="w"> </span><span class="err">%.cpp</span>
+
+<span class="nf">addsuffix</span><span class="o">:</span>用法与<span class="n">addprefix</span>相同，只是一个是前缀，一个是后缀。
+
+<span class="nf">wildcard</span><span class="o">:</span>
+<span class="k">$(</span><span class="nv">wildcard</span> &lt;<span class="nv">pattern1</span> <span class="nv">pattern2</span> <span class="nv">...</span>&gt;<span class="k">)</span>
+<span class="err">功能：展开pattern中的通配符</span>
+
+<span class="k">$(</span><span class="nv">wildcard</span> <span class="nv">src</span>/*<span class="k">)</span>
+<span class="err">输出：得到src目录下的文件列表</span>
+<span class="nv">File</span><span class="o">=</span>/dir1/dir2/dir3/a.b.c.txt
+<span class="w">    </span>basename<span class="w"> </span><span class="nv">$File</span>
+<span class="w">    </span>输出<span class="w"> </span>a.b.c.txt
+
+<span class="nf">basename</span><span class="o">:</span>
+<span class="err">从路径中提取出文件名（带后缀）</span>
+
+<span class="err">filter：</span>
+<span class="k">$(</span><span class="nv">filter</span> &lt;<span class="nv">pattern1</span> <span class="nv">pattern2</span> <span class="nv">...</span>&gt;, &lt;<span class="nv">text</span>&gt;<span class="k">)</span>
+<span class="err">功能：以&lt;pattern&gt;模式过滤&lt;text&gt;字符串中的单词，保留符合模式&lt;pattern&gt;的单词。可以有多个模式。</span>
+
+<span class="k">$(</span><span class="nv">filter</span> %<span class="nv">.c</span> %<span class="nv">.cpp</span>, <span class="k">$(</span><span class="nv">wildcard</span> <span class="nv">src</span>/*<span class="k">))</span>
+<span class="err">输出：src目录下所有后缀是.c和.cpp的文件序列。</span>
+
+<span class="err">call：</span>
+<span class="k">$(</span><span class="nv">call</span> &lt;<span class="nv">expression</span>&gt;,&lt;<span class="nv">param1</span>&gt;,&lt;<span class="nv">param2</span>&gt;,<span class="nv">...</span><span class="k">)</span>
+<span class="err">功能：&lt;expression&gt;中有</span><span class="k">$(</span><span class="nv">1</span><span class="k">)</span><span class="err">,</span><span class="k">$(</span><span class="nv">2</span><span class="k">)</span><span class="err">这种占位符，call函数使用&lt;param1&gt;,&lt;param2&gt;来替换</span><span class="k">$(</span><span class="nv">1</span><span class="k">)</span><span class="err">,</span><span class="k">$(</span><span class="nv">2</span><span class="k">)</span><span class="err">,并计算表达式的值，返回结果字符串。</span>
+
+<span class="nv">listfile</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span><span class="k">$(if</span><span class="w"> </span><span class="k">$(</span><span class="m">2</span><span class="k">)</span>,<span class="k">$(</span>addprefix<span class="w"> </span>%.,<span class="k">$(</span><span class="m">2</span><span class="k">))</span>,%<span class="k">)</span>,<span class="w"> </span><span class="se">\</span>
+<span class="w">                    </span><span class="k">$(</span>wildcard<span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span><span class="k">$(</span>SLASH<span class="k">)</span>*,<span class="w"> </span><span class="k">$(</span><span class="m">1</span><span class="k">)))</span><span class="o">)</span>
+
+<span class="nv">list_cc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>call<span class="w"> </span>listfile,<span class="w"> </span>src,<span class="w"> </span>c<span class="w"> </span>cpp<span class="k">)</span>
+<span class="err">输出：src目录下所有后缀是.c和.cpp的文件序列</span>
+</code></pre></div>
+<h1 id="ysyx-makefile">ysyx-makefile的神奇冒险之旅<a class="headerlink" href="#ysyx-makefile" title="Permanent link">&para;</a></h1>
+<h2 id="1runcpu-test">1.小run从cpu-test的回家路线<a class="headerlink" href="#1runcpu-test" title="Permanent link">&para;</a></h2>
+<p>makefile的神奇冒险之旅</p>
+<p>写下此笔记作为对自己的锻炼，顺带加深印象</p>
+<p>/home/wangxin/ysyx-workbench/am-kernels/tests/cpu-tests/Makefile</p>
+<p>在cpu-test中启动make ARCH=riscv32-nemu ALL=bit run -nB的执行过程</p>
+<p>执行run后的状态</p>
+<div class="highlight"><pre><span></span><code><span class="err">/bin/echo</span><span class="w"> </span><span class="err">-e</span><span class="w"> </span><span class="s2">&quot;NAME = bit\nSRCS = tests/bit.c\ninclude ${AM_HOME}/Makefile&quot;</span><span class="w"> </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Makefile.bit</span>
+<span class="cp">if make -s -f Makefile.bit ARCH=riscv32-nemu run; then \</span>
+<span class="cp">        printf &quot;[%14s] \033[1;32mPASS!\033[0m\n&quot; bit &gt;&gt; .result; \</span>
+<span class="cp">else \</span>
+<span class="cp">        printf &quot;[%14s] \033[1;31mFAIL!\033[0m\n&quot; bit &gt;&gt; .result; \</span>
+<span class="cp">fi</span>
+<span class="err">rm</span><span class="w"> </span><span class="err">-f</span><span class="w"> </span><span class="err">Makefile.bit</span>
+<span class="err">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="err">bit</span>
+<span class="err">cat</span><span class="w"> </span><span class="err">.result</span>
+<span class="err">rm</span><span class="w"> </span><span class="err">.result</span>
+</code></pre></div>
+<p>提取出重要信息</p>
+<div class="highlight"><pre><span></span><code><span class="err">make</span><span class="w"> </span><span class="err">-s</span><span class="w"> </span><span class="err">-f</span><span class="w"> </span><span class="err">Makefile.bit</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>riscv32-nemu<span class="w"> </span>run
+<span class="err">-f</span><span class="w">        </span><span class="err">file读入当前目录下的file文件作为makefile</span><span class="w"> </span>
+<span class="nv">$(ARCH)</span><span class="o">=</span>riscv32-nemu<span class="w"> </span>
+<span class="nv">$(MAKECMDGOALS)</span><span class="o">=</span>run
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;NAME = bit\nSRCS = tests/bit.c\ninclude ${AM_HOME}/Makefile&quot;</span><span class="w"> </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Makefile.bit</span>
+</code></pre></div>
+<p>Makefile.bit解读 （来源chatgpt）</p>
+<ul>
+<li>
+<p><code>Makefile.%: tests/%.c latest</code> 是一个 Makefile 的规则，用于生成以特定模式开头的目标文件。</p>
+</li>
+<li>
+<p>这个规则可以解读为：对于以任意字符串开头的目标文件（使用通配符 %），如果存在对应的 <code>tests/</code> 目录下的同名 <code>.c</code> 文件，则使用最新的 <code>latest</code> 文件作为依赖，执行规则中定义的命令。</p>
+</li>
+<li>
+<p>具体来说，假设你的 Makefile 中有以下规则：</p>
+</li>
+<li>
+<p><code>makefile
+  Makefile.%: tests/%.c latest
+      gcc -o $@ $&lt; -Iinclude -Llib -lmylibrary</code></p>
+</li>
+<li>
+<p>当你运行 <code>make Makefile.example</code> 时，Make 工具会尝试查找 <code>tests/example.c</code> 文件以及名为 <code>latest</code> 的文件。如果这些文件都存在，并且 <code>tests/example.c</code> 文件的修改时间晚于 <code>latest</code> 文件的修改时间，那么 Make 工具会执行规则中定义的命令，这里是使用 gcc 编译 <code>tests/example.c</code> 文件并生成名为 <code>Makefile.example</code> 的目标文件。</p>
+</li>
+<li>
+<p>这个规则的作用是根据 <code>tests/</code> 目录下的源代码文件生成对应的目标文件。<code>latest</code> 文件用作一个标记，确保只有在源代码文件更新后才重新编译目标文件。这样可以避免不必要的重新编译，提高构建效率</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;NAME = bit SRCS = tests/bit.c include ${AM_HOME}/Makefile&quot;</span><span class="w"> </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Makefile.bit</span>
+</code></pre></div>
+<p>传入参数</p>
+<div class="highlight"><pre><span></span><code> $NAME=bit    $SRCS=tests/bit.c   include ${AM_HOME}/Makefile 写入Makefile.*文件
+</code></pre></div>
+<p>我们依然假设我们用的是make ARCH=riscv32-nemu ALL=bit run -nB命令</p>
+<p>此时产生了Makefile.bit文件 文件内容为</p>
+<div class="highlight"><pre><span></span><code><span class="nv">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bit
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tests/bit.c
+<span class="cp">include /home/wangxin/ysyx-workbench/abstract-machine/Makefile</span>
+<span class="c">#include 相当于把Makefile.bit展开成</span>
+<span class="nv">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bit
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tests/bit.c
+<span class="err">+include</span><span class="w"> </span><span class="err">/home/wangxin/ysyx-workbench/abstract-machine/Makefile</span><span class="w"> </span><span class="err">里的所有内容</span>
+<span class="err">（相当于copy</span><span class="w"> </span><span class="err">abstract-machine/Makefile的所有内容，多了NAME和SRCS参数）</span>
+</code></pre></div>
+<p>让我们来接着关注 include ${AM_HOME}/Makefile</p>
+<p>进入/home/wangxin/ysyx-workbench/abstract-machine/Makefile</p>
+<p>由于abstract-machine/Makefile模板复杂，挑重点进行解读</p>
+<p>首先进行预处理，得到需要的所有变量</p>
+<p>第一次调用abstract-machine/Makefile要处理的变量</p>
+<div class="highlight"><pre><span></span><code>NAME = bit
+SRCS = tests/bit.c
+ISA = riscv32
+ARCH= riscv32-nemu
+PLATFORM=menu
+MAKECMDGOALS=run
+WORK_DIR  = $(shell pwd)
+WORK_DIR  = $(shell pwd)
+DST_DIR   = $(WORK_DIR)/build/$(ARCH)
+$(shell mkdir -p $(DST_DIR))
+
+### Compilation targets (a binary image or archive)
+IMAGE_REL = build/$(NAME)-$(ARCH)
+IMAGE     = $(abspath $(IMAGE_REL))
+ARCHIVE   = $(WORK_DIR)/build/$(NAME)-$(ARCH).a
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>-include $(AM_HOME)/scripts/$(ARCH).mk
+</code></pre></div>
+<p>-include和include区别</p>
+<ul>
+<li>类似c++到指定目录寻找makefile文件，并将该文件载入到当前文件中（可以看做include就是将makefile文件里的所有内容copy到当前文件中）</li>
+<li>区别如果有include的文件没有找到的话，make会生成一条警告信息，但不会马上出现致命错误。它会继续载入其它的文件，一旦完成makefile的读取，make会再重试这些没有找到，或是不能读取的文件，如果还是不行，make才会出现一条致命信息。如果你想让make不理那些无法读取的文件，而继续执行，在include前加一个减号“-”。就可以忽略警告</li>
+</ul>
+<p>展开-include $(AM_HOME)/scripts/riscv32-nemu.mk的内容为</p>
+<div class="highlight"><pre><span></span><code><span class="cp">include $(AM_HOME)/scripts/isa/riscv.mk</span>
+<span class="cp">include $(AM_HOME)/scripts/platform/nemu.mk</span>
+<span class="c">###展开riscv,mk</span>
+<span class="nv">CROSS_COMPILE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>riscv64-linux-gnu-
+<span class="nv">COMMON_CFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-fno-pic<span class="w"> </span>-march<span class="o">=</span>rv64g<span class="w"> </span>-mcmodel<span class="o">=</span>medany<span class="w"> </span>-mstrict-align
+<span class="nv">CFLAGS</span><span class="w">        </span><span class="o">+=</span><span class="w"> </span><span class="k">$(</span>COMMON_CFLAGS<span class="k">)</span><span class="w"> </span>-static
+<span class="nv">ASFLAGS</span><span class="w">       </span><span class="o">+=</span><span class="w"> </span><span class="k">$(</span>COMMON_CFLAGS<span class="k">)</span><span class="w"> </span>-O0
+<span class="nv">LDFLAGS</span><span class="w">       </span><span class="o">+=</span><span class="w"> </span>-melf64lriscv
+
+<span class="c"># overwrite ARCH_H defined in $(AM_HOME)/Makefile</span>
+<span class="nv">ARCH_H</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>arch/riscv.h
+<span class="c">###</span>
+
+<span class="c">###展开nemu.mk</span>
+<span class="err">篇幅过长</span><span class="w"> </span><span class="err">见下文</span>
+<span class="c">###</span>
+<span class="nv">CFLAGS</span><span class="w">  </span><span class="o">+=</span><span class="w"> </span>-DISA_H<span class="o">=</span><span class="se">\&quot;</span>riscv/riscv.h<span class="se">\&quot;</span>
+<span class="nv">COMMON_CFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-march<span class="o">=</span>rv32im_zicsr<span class="w"> </span>-mabi<span class="o">=</span>ilp32<span class="w">  </span><span class="c1"># overwrite</span>
+<span class="nv">LDFLAGS</span><span class="w">       </span><span class="o">+=</span><span class="w"> </span>-melf32lriscv<span class="w">                     </span><span class="c1"># overwrite</span>
+
+<span class="nv">AM_SRCS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>riscv/nemu/start.S<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>riscv/nemu/cte.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>riscv/nemu/trap.S<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>riscv/nemu/vme.c
+</code></pre></div>
+<p>展开include $(AM_HOME)/scripts/platform/nemu.mk</p>
+<div class="highlight"><pre><span></span><code><span class="nv">AM_SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>platform/nemu/trm.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/ioe.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/timer.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/input.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/gpu.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/audio.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/ioe/disk.c<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>platform/nemu/mpe.c
+
+<span class="nv">CFLAGS</span><span class="w">    </span><span class="o">+=</span><span class="w"> </span>-fdata-sections<span class="w"> </span>-ffunction-sections
+<span class="nv">LDFLAGS</span><span class="w">   </span><span class="o">+=</span><span class="w"> </span>-T<span class="w"> </span><span class="k">$(</span>AM_HOME<span class="k">)</span>/scripts/linker.ld<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>--defsym<span class="o">=</span><span class="nv">_pmem_start</span><span class="o">=</span>0x80000000<span class="w"> </span>--defsym<span class="o">=</span><span class="nv">_entry_offset</span><span class="o">=</span>0x0
+<span class="nv">LDFLAGS</span><span class="w">   </span><span class="o">+=</span><span class="w"> </span>--gc-sections<span class="w"> </span>-e<span class="w"> </span>_start
+<span class="nv">NEMUFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-b
+<span class="c"># NEMUFLAGS += -f $(IMAGE).elf</span>
+<span class="c">#最后在native.mk编译,一个名叫riscv32-nemu-interpreter 的c++文件传入int main(argc, argv)[nemu-main.c]</span>
+<span class="c">#/home/wangxin/ysyx-workbench/nemu/build/riscv32-nemu-interpreter </span>
+<span class="c"># -l -b /home/wangxin/ysyx-workbench/am-kernels/tests/cpu-tests/build/nemu-log.txt</span>
+<span class="c"># /home/wangxin/ysyx-workbench/am-kernels/tests/cpu-tests/build/bit-riscv32-nemu.bin</span>
+<span class="nv">NEMUFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-l<span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>dirname<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.elf<span class="k">)</span>/nemu-log.txt
+
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-DMAINARGS<span class="o">=</span><span class="se">\&quot;</span><span class="k">$(</span>mainargs<span class="k">)</span><span class="se">\&quot;</span>
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I<span class="k">$(</span>AM_HOME<span class="k">)</span>/am/src/platform/nemu/include
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">AM_HOME</span><span class="k">)</span>/<span class="n">am</span>/<span class="n">src</span>/<span class="n">platform</span>/<span class="n">nemu</span>/<span class="n">trm</span>.<span class="n">c</span>
+
+<span class="nf">image</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">IMAGE</span><span class="k">)</span>.<span class="n">elf</span>
+<span class="w">    </span>@<span class="k">$(</span>OBJDUMP<span class="k">)</span><span class="w"> </span>-d<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.elf<span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.txt
+<span class="w">    </span>@echo<span class="w"> </span>+<span class="w"> </span>OBJCOPY<span class="w"> </span><span class="s2">&quot;-&gt;&quot;</span><span class="w"> </span><span class="k">$(</span>IMAGE_REL<span class="k">)</span>.bin
+<span class="w">    </span>@<span class="k">$(</span>OBJCOPY<span class="k">)</span><span class="w"> </span>-S<span class="w"> </span>--set-section-flags<span class="w"> </span>.bss<span class="o">=</span>alloc,contents<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.elf<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.bin
+
+<span class="nf">run</span><span class="o">:</span><span class="w"> </span><span class="n">image</span>
+<span class="w">    </span><span class="k">$(</span>MAKE<span class="k">)</span><span class="w"> </span>-C<span class="w"> </span><span class="k">$(</span>NEMU_HOME<span class="k">)</span><span class="w"> </span><span class="nv">ISA</span><span class="o">=</span><span class="k">$(</span>ISA<span class="k">)</span><span class="w"> </span>run<span class="w"> </span><span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>NEMUFLAGS<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">IMG</span><span class="o">=</span><span class="k">$(</span>IMAGE<span class="k">)</span>.bin
+
+<span class="nf">gdb</span><span class="o">:</span><span class="w"> </span><span class="n">image</span>
+<span class="w">    </span><span class="k">$(</span>MAKE<span class="k">)</span><span class="w"> </span>-C<span class="w"> </span><span class="k">$(</span>NEMU_HOME<span class="k">)</span><span class="w"> </span><span class="nv">ISA</span><span class="o">=</span><span class="k">$(</span>ISA<span class="k">)</span><span class="w"> </span>gdb<span class="w"> </span><span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>NEMUFLAGS<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">IMG</span><span class="o">=</span><span class="k">$(</span>IMAGE<span class="k">)</span>.bin
+</code></pre></div>
+<p>等等，这个run是从哪来的呢？</p>
+<p>我们往前推，往前往前再往前，一条无比熟悉的指令浮现在眼前</p>
+<div class="highlight"><pre><span></span><code>make -s -f Makefile.bit ARCH=riscv32-nemu run
+</code></pre></div>
+<p>这个 <strong>run</strong> 划重点，走了这么久，可算找到run在哪出现了</p>
+<p>所以，到底是个什么过程呢 其实，这是一个递归调用</p>
+<p>我们走了这么久，其实就是反复递归。</p>
+<p>在适当的地方插入监视点 <code>$(info "The am_makefile begin"$(NAME)-$(MAKECMDGOALS)-$(ARCH))</code></p>
+<p>获得编译参数</p>
+<div class="highlight"><pre><span></span><code>&quot;The am_makefile begin&quot;bit-run-riscv32-nemu
+# Building bit-run [riscv32-nemu]
+&quot;The am_makefile end&quot;bit-run-riscv32-nemu
+&quot;The am_makefile begin&quot;am-archive-riscv32-nemu
+# Building am-archive [riscv32-nemu]
+&quot;The am_makefile end&quot;am-archive-riscv32-nemu
++ CC src/platform/nemu/trm.c
++ AR -&gt; build/am-riscv32-nemu.a
+&quot;The am_makefile begin&quot;klib-archive-riscv32-nemu
+# Building klib-archive [riscv32-nemu]
+&quot;The am_makefile end&quot;klib-archive-riscv32-nemu
++ LD -&gt; build/bit-riscv32-nemu.elf
+# Creating image [riscv32-nemu]
++ OBJCOPY -&gt; build/bit-riscv32-nemu.bin
+</code></pre></div>
+<p>每一次building伴随着include abstract-machine/makefile</p>
+<p>第一次的building</p>
+<div class="highlight"><pre><span></span><code>NAME = bit
+ISA = riscv32
+ARCH= riscv32-nemu
+MAKECMDGOALS=run
+</code></pre></div>
+<p>第二次的building</p>
+<div class="highlight"><pre><span></span><code>NAME = am
+ISA = riscv32
+ARCH= riscv32-nemu
+MAKECMDGOALS=archive
+</code></pre></div>
+<p>第三次的building</p>
+<div class="highlight"><pre><span></span><code>NAME = klib
+ISA = riscv32
+ARCH= riscv32-nemu
+MAKECMDGOALS=archive
+</code></pre></div>
+<p>第四次的creating相当于生成.elf文件，相当于调用</p>
+<div class="highlight"><pre><span></span><code>+ LD -&gt; build/bit-riscv32-nemu.elf
+# Creating image [riscv32-nemu]
++ OBJCOPY -&gt; build/bit-riscv32-nemu.bin
+</code></pre></div>
+<p>让我们先从第一个run说起吧</p>
+<div class="highlight"><pre><span></span><code>run: image
+    $(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS=&quot;$(NEMUFLAGS)&quot; IMG=$(IMAGE).bin
+</code></pre></div>
+<p>读入NEMU_HOME的makefile</p>
+<p>传入参数</p>
+<div class="highlight"><pre><span></span><code>ISA=riscv32-nemu
+ARGS=&quot;$(NEMUFLAGS)&quot;
+IMG=$(IMAGE).bin 
+</code></pre></div>
+<p>这个IMG我们可以通过浏览后面的代码得到结论</p>
+<p>nemu通过解析这个.bin文件获得inst，并将其存入pmem这个大数组中</p>
+<p><img alt="jietu" src="../typora-user-images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF%E7%9A%84makefile%E7%B2%BE%E8%A7%A3/jietu-1700734031338-2.png" /></p>
+<p>然后 我们再次见到了老朋友 <code>include $(AM_HOME)/Makefile</code></p>
+<p>我们对老朋友比较熟悉了，那我们先把nemu/makefile梳理完再进入老朋友探索</p>
+<p>在nemu/makefile中的最后几句，可以看到 <code>include $(NEMU_HOME)/scripts/native.mk</code></p>
+<p>展开</p>
+<div class="highlight"><pre><span></span><code><span class="cp">-include $(NEMU_HOME)/../Makefile</span>
+<span class="cp">include $(NEMU_HOME)/scripts/build.mk</span>
+
+<span class="cp">include $(NEMU_HOME)/tools/difftest.mk</span>
+</code></pre></div>
+<p>这里引用了ysyx的一些追踪东西</p>
+<div class="highlight"><pre><span></span><code><span class="nf">run-env</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">BINARY</span><span class="k">)</span> <span class="k">$(</span><span class="nv">DIFF_REF_SO</span><span class="k">)</span>
+
+<span class="nf">run</span><span class="o">:</span><span class="w"> </span><span class="n">run</span>-<span class="n">env</span>
+<span class="w">    </span><span class="k">$(</span>call<span class="w"> </span>git_commit,<span class="w"> </span><span class="s2">&quot;run NEMU&quot;</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>NEMU_EXEC<span class="k">)</span>
+</code></pre></div>
+<p>我们可以发现，最开始输入的那个run，竟然走了这么多，兜兜转转来到了native.mk执行</p>
+<div class="highlight"><pre><span></span><code><span class="nf">compile_git</span><span class="o">:</span>
+<span class="w">    </span><span class="k">$(</span>call<span class="w"> </span>git_commit,<span class="w"> </span><span class="s2">&quot;compile NEMU&quot;</span><span class="k">)</span>
+<span class="nf">$(BINARY)</span><span class="o">::</span><span class="w"> </span><span class="n">compile_git</span>
+
+<span class="c">#从前面的参数，我们得知 ARGS=&quot;$(NEMUFLAGS)&quot;</span>
+<span class="err">override</span><span class="w"> </span><span class="nv">ARGS</span><span class="w"> </span><span class="o">?=</span><span class="w"> </span>--log<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/nemu-log.txt
+<span class="err">override</span><span class="w"> </span><span class="nv">ARGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">$(</span>ARGS_DIFF<span class="k">)</span>
+
+<span class="nv">IMG</span><span class="w"> </span><span class="o">?=</span>
+<span class="nv">NEMU_EXEC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>BINARY<span class="k">)</span><span class="w"> </span><span class="k">$(</span>ARGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>IMG<span class="k">)</span>
+</code></pre></div>
+<p>所以，我们的run最终的输出为</p>
+<div class="highlight"><pre><span></span><code><span class="c"># NEMUFLAGS += -f $(IMAGE).elf</span>
+<span class="c">#最后在native.mk编译,一个名叫riscv32-nemu-interpreter 的c++文件传入int main(argc, argv)[nemu-main.c]</span>
+<span class="err">/home/wangxin/ysyx-workbench/nemu/build/riscv32-nemu-interpreter</span><span class="w"> </span>
+<span class="w"> </span><span class="err">-l</span><span class="w"> </span><span class="err">-b</span><span class="w"> </span><span class="err">/home/wangxin/ysyx-workbench/am-kernels/tests/cpu-tests/build/nemu-log.txt</span>
+<span class="w"> </span><span class="err">/home/wangxin/ysyx-workbench/am-kernels/tests/cpu-tests/build/bit-riscv32-nemu.bin</span>
+</code></pre></div>
+<p>/home/wangxin/ysyx-workbench/nemu/build/riscv32-nemu-interpreter是编译出的可执行文件</p>
+<p>后面的参数通过**int** parse_args(<strong>int</strong> argc, <strong>char</strong> <em>argv*</em>[]**) 解析出来交给c语言进行操作。</p>
+<p>接下来在c语言中应该发生什么我们应该知道了</p>
+<h2 id="amklibelf">am、klib和、elf的冒险之旅<a class="headerlink" href="#amklibelf" title="Permanent link">&para;</a></h2>
+<p>用到的时候再补充详解（）</p>
+<p>在abstract-machine/makefile中，我们可以看到如下字段</p>
+<p>结合ysyx讲义得am和klib这些链接过程</p>
+<div class="highlight"><pre><span></span><code><span class="c">### Collect the files to be linked: object files (`.o`) and libraries (`.a`)</span>
+<span class="nv">OBJS</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>addprefix<span class="w"> </span><span class="k">$(</span>DST_DIR<span class="k">)</span>/,<span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>basename<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))))</span>
+<span class="nv">LIBS</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>sort<span class="w"> </span><span class="k">$(</span>LIBS<span class="k">)</span><span class="w"> </span>am<span class="w"> </span>klib<span class="k">)</span><span class="w"> </span><span class="c1"># lazy evaluation (&quot;=&quot;) causes infinite recursions</span>
+<span class="nv">LINKAGE</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="k">$(</span>addsuffix<span class="w"> </span>-<span class="k">$(</span>ARCH<span class="k">)</span>.a,<span class="w"> </span><span class="k">$(</span>join<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="k">$(</span>addsuffix<span class="w"> </span>/build/,<span class="w"> </span><span class="k">$(</span>addprefix<span class="w"> </span><span class="k">$(</span>AM_HOME<span class="k">)</span>/,<span class="w"> </span><span class="k">$(</span>LIBS<span class="k">)))</span>,<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="k">$(</span>LIBS<span class="k">)</span><span class="w"> </span><span class="o">))</span>
+</code></pre></div>
+<p>对于elf的生成我们可以在这里找到</p>
+<div class="highlight"><pre><span></span><code><span class="c">### Rule (link): objects (`*.o`) and libraries (`*.a`) -&gt; `IMAGE.elf`, the final ELF binary to be packed into image (ld)</span>
+<span class="nf">$(IMAGE).elf</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span> <span class="n">am</span> <span class="k">$(</span><span class="nv">LIBS</span><span class="k">)</span>
+<span class="w">    </span>@echo<span class="w"> </span>+<span class="w"> </span>LD<span class="w"> </span><span class="s2">&quot;-&gt;&quot;</span><span class="w"> </span><span class="k">$(</span>IMAGE_REL<span class="k">)</span>.elf
+<span class="w">    </span>@<span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LDFLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>IMAGE<span class="k">)</span>.elf<span class="w"> </span>--start-group<span class="w"> </span><span class="k">$(</span>LINKAGE<span class="k">)</span><span class="w"> </span>--end-group
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - 2023 Wang Xin
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

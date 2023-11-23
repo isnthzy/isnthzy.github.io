@@ -10,13 +10,13 @@
         <meta name="author" content="培风">
       
       
-        <link rel="canonical" href="https://isnthzy.github.io/src/TMUX%E4%B8%8EVIM/">
+        <link rel="canonical" href="https://isnthzy.github.io/src/Makefile%E5%AD%A6%E4%B9%A0/">
       
       
-        <link rel="prev" href="../%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7%E8%AF%BB%E5%90%8E%E6%84%9F/">
+        <link rel="prev" href="../%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF%E7%9A%84makefile%E7%B2%BE%E8%A7%A3/">
       
       
-        <link rel="next" href="../git%E7%9A%84%E7%94%A8%E6%B3%95/">
+        <link rel="next" href="../%E9%BE%99%E8%8A%AF%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>TMUX与VIM - 培风的博客</title>
+        <title>Makefile学习随笔 - 培风的博客</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tmuxvim" class="md-skip">
+        <a href="#makefile" class="md-skip">
           跳转至
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TMUX与VIM
+              Makefile学习随笔
             
           </span>
         </div>
@@ -262,19 +262,17 @@
       
   
   
-    
-  
   
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
@@ -287,7 +285,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             linux笔记
@@ -298,29 +296,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    TMUX与VIM
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../TMUX%E4%B8%8EVIM/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -329,143 +307,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tmux" class="md-nav__link">
-    Tmux
-  </a>
-  
-    <nav class="md-nav" aria-label="Tmux">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1).切分：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2).退出：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3pane" class="md-nav__link">
-    3).选择pane：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4).调整分割线：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5).全屏与取消全屏：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    6).挂起窗口：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7session" class="md-nav__link">
-    7).选择其他的session：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9" class="md-nav__link">
-    9).翻阅内容：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10tmux" class="md-nav__link">
-    10).从tmux中复制文本：
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vim" class="md-nav__link">
-    Vim
-  </a>
-  
-    <nav class="md-nav" aria-label="Vim">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    1).功能
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    2).使用
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3).模式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    4).操作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -541,9 +382,18 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../Makefile%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -552,6 +402,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -690,131 +541,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tmux" class="md-nav__link">
-    Tmux
-  </a>
-  
-    <nav class="md-nav" aria-label="Tmux">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1).切分：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2).退出：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3pane" class="md-nav__link">
-    3).选择pane：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    4).调整分割线：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5).全屏与取消全屏：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    6).挂起窗口：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7session" class="md-nav__link">
-    7).选择其他的session：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9" class="md-nav__link">
-    9).翻阅内容：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10tmux" class="md-nav__link">
-    10).从tmux中复制文本：
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vim" class="md-nav__link">
-    Vim
-  </a>
-  
-    <nav class="md-nav" aria-label="Vim">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    1).功能
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    2).使用
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    3).模式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    4).操作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -831,141 +557,26 @@
   
 
 
-<h1 id="tmuxvim">TMUX与VIM<a class="headerlink" href="#tmuxvim" title="Permanent link">&para;</a></h1>
-<h2 id="tmux">Tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h2>
-<p>作用
-1.分屏：可以在一个开发框里分屏
-2.允许terminal在连接断开之后可以继续运行，让进程不会因为断开连接而中断</p>
-<p>结构</p>
-<ul>
-<li>一个tmux可以有一堆session</li>
-<li>每个sesion可开很多的window</li>
-<li>每个window可以开很多pane</li>
-<li>每个pane可以打开一个shell交互</li>
-</ul>
-<p>如图所示：<img alt="无标题.png" src="../typora-user-images/TMUX%E4%B8%8EVIM/109718_f4da408307-%E6%97%A0%E6%A0%87%E9%A2%98.png" /></p>
-<p>常规操作
-前言:tmux创建一个session，session中包含一个window</p>
-<h3 id="1">1).切分：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>竖直切分：先按ctrl+a松开，输入%，也就是按下shift+5
-当按下ctrl+d，可以关闭tmux
-水平切分：先按ctrl+a，再按”,即 shift+'
-同样的按下ctrl+d取消
-对于切分来说，每一块都可以继续切分</p>
-<h3 id="2">2).退出：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<p>ctrl+d 退出
-当window没有pane时，自动退出
-当session没有window时，自动退出
-故一直ctrl+d下去会直接退出</p>
-<h3 id="3pane">3).选择pane：<a class="headerlink" href="#3pane" title="Permanent link">&para;</a></h3>
-<p>鼠标点击即可或输入ctrl+a，然后按方向键选择相邻的pane</p>
-<h3 id="4">4).调整分割线：<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<p>选中并拖动即可或者ctrl+a同时(同时也不松开)按方向键</p>
-<h3 id="5">5).全屏与取消全屏：<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
-<p>某个窗口全屏：选中并按下ctrl+A再按z
-同样取消按ctrl+A再按z</p>
-<h3 id="6">6).挂起窗口：<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
-<p>ctrl+a然后按d，此为从session中退出
-输入tmux a 或tmux attach，再开启session窗口</p>
-<h3 id="7session">7).选择其他的session：<a class="headerlink" href="#7session" title="Permanent link">&para;</a></h3>
-<p>先进入tmux，然后在tmux里输入ctrl+a再按s
-再session里的方向键操作：
-→展开，→再按一次是展开所有pane ←按下是合上所有pane
-←合上
-↑↓选择session
-如下所示：一共9个session，点开展开是一系列window，再展开window是pane<img alt="QQ截图20220716231316.png" src="../typora-user-images/TMUX%E4%B8%8EVIM/109718_4086724007-QQ%E6%88%AA%E5%9B%BE20220716231316.png" /></p>
-<p>8).session中创建window与选择window：ctrl+a再按c：创建window
-ctrl+a再按w：选择其他window也可以展开合上每个window
-注：ctrl+a+s与ctrl+a+w的区别:前者打开只展开session一级，展示session级中所有的window如图一，后者打开默认是w一级，展开window级中所有的pane，如图二</p>
-<p><img alt="QQ截图20220716231316.png" src="../typora-user-images/TMUX%E4%B8%8EVIM/109718_4086724007-QQ%E6%88%AA%E5%9B%BE20220716231316-1692948480443-5.png" /></p>
-<p><img alt="QQ截图20220716231355.png" src="../typora-user-images/TMUX%E4%B8%8EVIM/109718_8f4fe78d07-QQ%E6%88%AA%E5%9B%BE20220716231355.png" /></p>
-<h3 id="9">9).翻阅内容：<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
-<p>↑滚轮向上
-如果没有鼠标：ctrl+a再按Pageup向上翻，按PageUp向下翻
-按PageUp也可以唤醒</p>
-<h3 id="10tmux">10).从tmux中复制文本：<a class="headerlink" href="#10tmux" title="Permanent link">&para;</a></h3>
-<p>按住shift键选择文本
-ctrl+insert复制
-shift+insert粘贴
-mac电脑：command+c复制
-command+v粘贴</p>
-<h2 id="vim">Vim<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h2>
-<h3 id="1_1">1).功能<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
-<p>1.命令行模式下的文本编辑器
-2.根据扩展名判别编程语言，实现代码缩进、代码高亮</p>
-<h3 id="2_1">2).使用<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
-<p>vim filename
-如果有该文件则打开
-没有则打开一个新的文件，命名为filename</p>
-<h3 id="3">3).模式<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>1.一般命令模式/默认模式：无法编写，输入命令，每一个命令对应一个字母，支持复制粘贴删除文本
-2.编辑模式：在默认模式下按i，进入编辑模式，按esc退出
-3.命令行模式：默认模式下按：/？三个中任意一个进入命令行模式，命令行在最下面（个人建议用：）支持查找、替换、保存、退出、配置编辑器等
-输入:wq,保存并退出</p>
-<h3 id="4_1">4).操作<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
-<p>1.i：进入编辑模式</p>
-<p>2.esc：进入一般命令模式</p>
-<p>3.小键盘可以操作前后左右
-注：在命令模式下：vim会卡在最后一个字符前面，编辑模式会卡在最后一个字符，不像win，移动到最后会直接换行
-同样的，无论是什么模式，往左移动到开头就会停下</p>
-<p>4.光标的移动操作：n<Space> n是数字，光标会自动右移n个字符
-一般命令模式下：0/home 将光标移动到本行开头
-$/End 将光标移动到本行结尾
-G:光标移动到最后一行</p>
-<p>5.具体到哪一行的操作：
-1).n/nG:表示想去具体到哪一行（n是到某一行的下面，nG是直达）
-2).gg:到达第一行
-3).n<Enter> 向下跳n行</p>
-<p>6.查找与修改字符串的操作：
-1)./word:在命令行模式下，光标之下寻找第一个值为word的字符串
-2).?word:在光标之上第一个值为word的字符串
-3).n:重复前一个查找操作
-4).N:反向查找，也就是说前一个命令向前找，此命令下向后找
-5).:n1,n2s/word1/word2/g:n1,n2为数字，在第n1与n2之间找word1，并替换为word2
-:1,<span class="arithmatex"><span class="MathJax_Preview">s/word1/word2/g: 将全文的word1换成word2
-:1,</span><script type="math/tex">s/word1/word2/g: 将全文的word1换成word2
-:1,</script></span>s/word1/word2/gc:在每一次替换的时候都会让用户进行确认</p>
-<p>7.:noh 关闭所查找的关键词的高亮</p>
-<p>8.选中与删除
-v:选中文本,按两下esc取消
-d:删除选中文本(其实有剪切的特性)
-dd:删除整行</p>
-<p>9.复制与粘贴：
-y:复制(文本)
-p:在光标所处位置的下一行或下一个位置(通常当光标在两边时)粘贴
-yy:复制当前行</p>
-<p>10.撤销:u:撤销
-ctrl+r:取消撤销
-注:在windows里，ctrl+z撤销，ctrl+shift+z取消撤销</p>
-<p>11.&gt; 将选中的文本整体向右移动
-&lt; 将选中的文本整体向左移动</p>
-<p>12.保存与退出：
-:w保存
-:w! 强制保存
-一般命令模式下:按下ESC，按q退出
-:q! 强制退出（不保存）
-:wq 保存并退出
-:wq! 强制保存退出</p>
-<p>13.行号的显示与隐藏:
-:set nonu 隐藏行号
-:set nu 显示行号</p>
-<p>14.paste模式:
-为什么:当要粘贴过来的代码很长时，命令可能会失效，占用很大带宽，导致出现多重缩进
-:set paste取消代码缩进，设置成粘贴模式
-:set nopaste开启代码缩进</p>
-<p>15.其他与gg有关的
-gg+d+G 删除全部内容
-gg=G 将全文格式化</p>
-<p>16.vim的卡死处理
-ctrl+q:当vim卡死时，可取消当前正在执行的命令</p>
-<p>17.异常处理:当前进程出现冲突时，会出现异常
-解决方法：1).找到正在多个打开的文件程序，并关掉，保证同一个进程只有同一个文件能打开
-2).问题：当一个进程不小心被其他进程杀掉，当再打开main.cpp时，此时如果出现一个.swp缓存文件时会报错
-解决：在没有任何一个进程打开该文件时，将.swp文件删掉即可</p>
-<p>(转载)</p>
-<p>作者：我真的菜的要死了
-链接：<a href="https://www.acwing.com/solution/content/126569/">https://www.acwing.com/solution/content/126569/</a>
-来源：AcWing</p>
+<h1 id="makefile">Makefile<a class="headerlink" href="#makefile" title="Permanent link">&para;</a></h1>
+<p>微观的c/c++编译执行过程</p>
+<p>C语言  .c   ——&gt;    .exe ?  到底发生了啥？</p>
+<p>分为几个过程：</p>
+<p>-E  预处理： 把 .h    .c 展开形成一个文件。宏定义直接替换 头文件    库文件 .i</p>
+<p>gcc  -E  hello.c  -o  hello.i</p>
+<p>-S  汇编： .i  生成一个汇编代码文件     .s</p>
+<p>gcc  -S  hello.i  -o  hello.s</p>
+<p>-C 编译：  .S 生成一个  .o     .obj </p>
+<p>gcc  -c  hello.s    -o hello.o </p>
+<p>-o 链接：  .o 链接   .exe   windows     .elf</p>
+<p>gcc hello.o  -o   hello</p>
+<p>-nB 只打印不运行</p>
+<p>$(info  xxxx) 执行中打印</p>
+<p><strong>gcc   hello.c -o hello     //一行也可以直接生成</strong>    <strong>hello</strong>
+Makefile爆error的时候，这个error是由程序的退出码<a href="https://zhuanlan.zhihu.com/p/647776823">Linux 中退出码的含义</a>决定的。当程序退出码为0，程序正常执行，不为0，程序发生异常，可以搜索退出码来获得makefile过程中发生了什么。</p>
+<p>make命令执行后有三个退出码：
+0 —— 表示成功执行。
+1 —— 如果make运行时出现任何错误，其返回1。
+2 —— 如果你使用了make的“-q”选项，并且make使得一些目标不需要更新，那么返回2。</p>
 
 
 
